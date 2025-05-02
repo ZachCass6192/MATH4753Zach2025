@@ -2,25 +2,22 @@
 % Please edit documentation in R/myclt.R
 \name{myclt}
 \alias{myclt}
-\title{Central Limit Theorem Simulation}
+\title{Central Limit Theorem Simulation for Uniform Distribution}
 \usage{
 myclt(n, iter, a = 0, b = 5)
 }
 \arguments{
-\item{n}{Number of samples in each iteration. Default is 100.}
+\item{n}{Sample size for each iteration}
 
-\item{iter}{Number of iterations to simulate. Default is 1000.}
+\item{iter}{Number of iterations/samples}
 
-\item{a}{Lower bound of the uniform distribution. Default is 0.}
+\item{a}{Lower bound of uniform distribution (default = 0)}
 
-\item{b}{Upper bound of the uniform distribution. Default is 5.}
+\item{b}{Upper bound of uniform distribution (default = 5)}
 }
 \value{
-A vector of the sums from each iteration.
+A histogram with a normal distribution overlay; returns the vector of simulated sums
 }
 \description{
-This function simulates the sum of uniformly distributed random variables
-and visualizes the distribution of the sums. It uses the Central Limit Theorem
-to show how the distribution of sums approaches a normal distribution as
-the number of samples increases.
+Simulates the CLT using uniform(a, b) distributions. Repeatedly samples and sums random values.
 }

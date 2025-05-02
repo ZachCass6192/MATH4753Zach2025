@@ -1,0 +1,92 @@
+---
+title: "Vignette-MATH4753Zach2025"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{using-MATH4753Zach2025}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MATH4753Zach2025)
+```
+
+
+# Introduction 
+
+The "MATH4753Zach2025" package provides several statistical functions designed to demonstrate concepts such as bootstrapping, simulation, likelihood estimation, and sampling. Also, it does include the data set "EPAGAS" known as epa in this document.
+
+This vignette will walk through the core functionality of the package.
+
+
+
+
+# Functions 
+
+## Myboot2
+This function uses resampling to create a bootstrap confidence interval for a specified statistic.
+
+```{r}
+myboot2(iter = 5000, x = epa$MPG, fun = "mean")
+```
+The example above utilizes the epa data set. 
+The sample mean is 36.994
+
+A theoretical 95% CI is from 36.51 to 37.47
+
+A bootstrap 95% CI is from 36.52 to 37.46
+
+Both are close — that’s good! It suggests the normal-based CI is reliable
+
+This produces a histogram of resampled statistics and shows both the bootstrap and theoretical confidence intervals.It’s useful for visualizing variability and understanding how bootstrap inference compares to classical inference.
+
+
+## ntickets
+This function calculates the optimal number of tickets to sell for a flight with N available seats, balancing the risk of overbooking (gamma) against the probability of passengers showing up (p). It compares:
+nd: Based on the exact binomial distribution, and nc: Based on the normal approximation.
+
+It also plots the objective function for both methods.
+```{r}
+# Assume we have 350 seats, only want a 2% chance of overbooking, and show-up probability is 95%
+ntickets(N = 350, gamma = 0.02, p = 0.95)
+
+```
+
+
+This shows that we could sell 360 or 359 tickets for the most profit while still maintaining a low probability of over selling. 
+
+## myclt
+This function demonstrates the Central Limit Theorem using repeated sampling from a specified distribution.
+```{r}
+myclt(n = 30, iter = 1000, a = 10, b = 20)
+```
+The funciton simulates the Central Limit Theorem by generating repeated samples from a uniform distribution and plotting the distribution of their sums. It visually demonstrates how the sum of independent samples approaches a normal distribution, even when the original data is not normal. You can customize the uniform range via a and b.
+
+## mymaxlike
+
+This function visually explores likelihood functions.
+
+```{r}
+# Define a binomial likelihood function
+lfun <- function(x, theta) dbinom(x, size = 10, prob = theta)
+
+# Run mymaxlik with all required arguments
+mymaxlik(lfun = lfun, x = 2:10, param = seq(0, 1, length = 100))
+
+```
+
+It draws the likelihood curve and marks the maximum.
+
+This function graphically explores likelihood functions. It computes the likelihood of different parameter values (e.g., theta) given observed data, then plots the likelihood curve and identifies the parameter that maximizes it. This helps users intuitively grasp the concept of maximum likelihood estimation.
+
+
+
+
+

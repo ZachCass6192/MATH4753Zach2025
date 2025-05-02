@@ -13,7 +13,7 @@
 #' and bootstrap confidence intervals.
 #'
 #' @importFrom stats qt quantile sd
-#' @importFrom graphics axis points segments text
+#' @importFrom graphics axis points segments text hist abline
 #' @export
 #'
 #' @examples
